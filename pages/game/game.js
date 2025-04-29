@@ -493,6 +493,11 @@ Page({
   // 移动后的处理
   afterMove(grid, moved, score) {
     if (moved) {
+      // 如果没有合并方块，播放移动音效
+      if (!this.mergedPositions || this.mergedPositions.length === 0) {
+        this.playSound('move');
+      }
+      
       // 添加新方块
       this.addRandomTile(grid);
       
@@ -554,6 +559,9 @@ Page({
     for (let row = 0; row < 4; row++) {
       for (let col = 0; col < 4; col++) {
         if (grid[row][col] === 2048) {
+          // 播放获胜音效
+          this.playSound('win');
+          
           wx.showModal({
             title: '恭喜获胜',
             content: '你已经合成了2048！是否继续游戏？',
@@ -573,6 +581,9 @@ Page({
   
   // 游戏结束
   gameOver() {
+    // 播放游戏结束音效
+    this.playSound('gameover');
+    
     // 获取当前难度的中文标签
     const difficultyLabel = this.getDifficultyLabel(this.data.difficulty);
     
@@ -667,6 +678,22 @@ Page({
     });
   },
   
+  // 切换音效设置
+  toggleSoundSetting() {
+    const newSetting = !this.data.soundEnabled;
+    this.setData({ soundEnabled: newSetting });
+    
+    // 保存音效设置
+    wx.setStorageSync('soundEnabled', newSetting);
+    
+    // 显示提示
+    wx.showToast({
+      title: newSetting ? '已开启音效' : '已关闭音效',
+      icon: 'none',
+      duration: 1500
+    });
+  },
+  
   // 获取难度的中文标签
   getDifficultyLabel(difficulty) {
     const option = this.data.difficultyOptions.find(opt => opt.value === difficulty);
@@ -684,24 +711,35 @@ Page({
   // 初始化音效
   initSounds() {
     try {
-      // 创建音效管理器
+      // 创建所有音效实例
       this.mergeSound = wx.createInnerAudioContext();
+      this.moveSound = wx.createInnerAudioContext();
+      this.winSound = wx.createInnerAudioContext();
+      this.gameoverSound = wx.createInnerAudioContext();
+
+      // 设置音效文件路径
+      const soundBasePath = 'assets/sounds/';
+      this.mergeSound.src = soundBasePath + 'merge.wav';
+      this.moveSound.src = soundBasePath + 'move.wav';
+      this.winSound.src = soundBasePath + 'win.mp3';
+      this.gameoverSound.src = soundBasePath + 'gameover.wav';
+
+      // 统一设置音量
+      [this.mergeSound, this.moveSound, this.winSound, this.gameoverSound].forEach(sound => {
+        sound.volume = 0.5;
+      });
       
-      // 微信小程序中正确的音频路径格式 - 不带前导斜杠
-      const audioPath = 'assets/sounds/merge.mp3';
-      console.log('设置音效文件路径:', audioPath);
-      
-      // 设置音频源
-      this.mergeSound.src = audioPath;
-      this.mergeSound.volume = 0.5;
-      
-      // 添加音效加载成功和失败的事件监听
+      // 添加音效加载失败的事件监听
       this.mergeSound.onError((res) => {
         console.error('合并音效加载失败:', res);
+        console.error('错误详情:', res.errMsg);
+        console.error('错误码:', res.errCode);
+        
+        // 显示详细错误信息
         wx.showToast({
-          title: '音效加载失败',
+          title: '音效加载失败: ' + res.errMsg,
           icon: 'none',
-          duration: 1500
+          duration: 2000
         });
       });
       
@@ -712,7 +750,7 @@ Page({
       
       // 添加音效加载成功的事件监听
       this.mergeSound.onCanplay(() => {
-        console.log('合并音效加载成功');
+        console.log('合并音效加载成功，路径:', this.mergeSound.src);
         // 预加载完成后，播放一次音效（音量为0）确保后续可以正常播放
         const originalVolume = this.mergeSound.volume;
         this.mergeSound.volume = 0;
@@ -723,6 +761,20 @@ Page({
           console.log('预加载音效完成');
         }, 100);
       });
+      
+      // 初始化其他音效
+      this.moveSound = wx.createInnerAudioContext();
+      this.moveSound.src = 'assets/sounds/move.wav';
+      this.moveSound.volume = 0.3;
+      
+      this.gameoverSound = wx.createInnerAudioContext();
+      this.gameoverSound.src = 'assets/sounds/gameover.wav';
+      this.gameoverSound.volume = 0.5;
+      
+      this.winSound = wx.createInnerAudioContext();
+      this.winSound.src = 'assets/sounds/win.mp3';
+      this.winSound.volume = 0.5;
+      
     } catch (error) {
       console.error('初始化音效失败:', error);
     }
@@ -730,37 +782,23 @@ Page({
   
   // 播放音效
   playSound(type) {
-    // 如果音效被禁用，直接返回
-    if (!this.data.soundEnabled) {
-      return;
-    }
+    if (!this.data.soundEnabled) return;
     
-    console.log('尝试播放音效:', type);
+    const soundMap = {
+      'merge': this.mergeSound,
+      'move': this.moveSound,
+      'win': this.winSound,
+      'gameover': this.gameoverSound
+    };
     
-    // 根据类型播放不同的音效
-    switch(type) {
-      case 'merge':
-        // 重置并播放合并音效
-        if (this.mergeSound) {
-          this.mergeSound.stop();
-          this.mergeSound.play();
-          
-          // 添加播放成功和失败的事件监听
-          this.mergeSound.onPlay(() => {
-            console.log('合并音效播放成功');
-          });
-          
-          this.mergeSound.onError((res) => {
-            console.error('合并音效播放失败:', res);
-          });
-        } else {
-          console.error('合并音效未初始化');
-        }
-        break;
-      // 可以添加更多音效类型
-      default:
-        console.log('未知的音效类型:', type);
-        break;
+    const sound = soundMap[type];
+    if (sound) {
+      try {
+        sound.stop();
+        sound.play();
+      } catch (error) {
+        console.error(`播放${type}音效失败:`, error);
+      }
     }
   },
   
