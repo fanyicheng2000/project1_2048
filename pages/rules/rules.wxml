@@ -1,0 +1,74 @@
+<!--pages/rules/rules.wxml-->
+<view class="container" style="background-color: #FAF8EF;">
+  <view class="rules-header">
+    <view class="title">游戏规则</view>
+  </view>
+  
+  <scroll-view scroll-y class="rules-content">
+    <view class="rule-section">
+      <view class="section-title">1. 游戏目标</view>
+      <view class="section-content">
+        玩家需要通过滑动屏幕，将相同数字的方块合并，最终合成一个2048的方块。成功合成2048后，可以继续挑战更高数字（如4096、8192等）。
+      </view>
+    </view>
+    
+    <view class="rule-section">
+      <view class="section-title">2. 游戏初始化</view>
+      <view class="section-content">
+        • 游戏开始时，系统会在4×4的棋盘上随机生成两个数字2（10%概率生成数字4）。
+        <view class="content-item">• 所有方块初始状态为未合并状态。</view>
+      </view>
+    </view>
+    
+    <view class="rule-section">
+      <view class="section-title">3. 基本玩法</view>
+      <view class="section-subtitle">3.1 滑动操作</view>
+      <view class="section-content">
+        玩家可以向上、下、左、右四个方向滑动屏幕，所有方块会朝该方向移动，并遵循以下规则：
+        <view class="content-item">1. 移动规则：所有方块朝滑动方向移动，直到碰到棋盘边界或另一个方块。</view>
+        <view class="content-item">2. 合并规则：如果两个相同数字的方块在移动方向上相邻，它们会合并成一个新的方块，数值相加（如2+2=4，4+4=8）。</view>
+        <view class="content-item">3. 单次合并限制：每个方块在一次滑动中只能合并一次，避免连续合并（如4→8→16）。</view>
+      </view>
+      
+      <view class="section-subtitle">3.2 新数字生成</view>
+      <view class="section-content">
+        • 每次有效滑动后（即至少有一个方块移动或合并），系统会在空白位置随机生成一个新数字。
+        <view class="content-item">• 新数字有90%概率是2，10%概率是4。</view>
+      </view>
+    </view>
+    
+    <view class="rule-section">
+      <view class="section-title">4. 计分规则</view>
+      <view class="section-content">
+        • 每次合并时，合并后的新数字值会累加到总分（如合并两个2得4分，合并两个4得8分）。
+        <view class="content-item">• 游戏会记录历史最高分，并在游戏结束时更新。</view>
+      </view>
+    </view>
+    
+    <view class="rule-section">
+      <view class="section-title">5. 游戏结束判定</view>
+      <view class="section-subtitle">5.1 胜利条件</view>
+      <view class="section-content">
+        • 当任意一个方块的数字达到2048时，玩家获胜。
+        <view class="content-item">• 获胜后可以选择继续挑战更高分或重新开始。</view>
+      </view>
+      
+      <view class="section-subtitle">5.2 失败条件</view>
+      <view class="section-content">
+        • 棋盘填满：所有格子都被数字填满，且无法再进行合并。
+        <view class="content-item">• 无有效移动：无论朝哪个方向滑动，都无法改变当前棋盘状态。</view>
+      </view>
+    </view>
+    
+    <view class="rule-section">
+      <view class="section-title">6. 游戏策略建议</view>
+      <view class="section-content">
+        <view class="content-item">1. 固定方向策略：尽量保持最大数字方块固定在角落（如右下角），避免频繁移动。</view>
+        <view class="content-item">2. 避免随机滑动：尽量朝一个主要方向滑动（如左或右），减少棋盘混乱。</view>
+        <view class="content-item">3. 预留合并空间：不要过早填满棋盘，确保有足够的空白格用于新数字生成。</view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <view class="back-button" bindtap="goBack">返回游戏</view>
+</view>

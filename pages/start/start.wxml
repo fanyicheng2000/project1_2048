@@ -1,0 +1,9 @@
+<!--pages/start/start.wxml-->
+<view class="container" style="background-color: #FAF8EF;">
+  <view class="logo-container">
+    <view class="logo">2048</view>
+    <view class="loading-animation">
+      <view class="loading-block"></view>
+    </view>
+  </view>
+</view>

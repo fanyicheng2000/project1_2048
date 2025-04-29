@@ -1,0 +1,127 @@
+/**rank.wxss**/
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.rank-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.title {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #776E65;
+  margin-bottom: 20rpx;
+}
+
+.tab-container {
+  display: flex;
+  width: 80%;
+  border-radius: 8rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.tab {
+  flex: 1;
+  text-align: center;
+  padding: 15rpx 0;
+  background-color: #CDC1B4;
+  color: #776E65;
+  font-size: 28rpx;
+}
+
+.tab.active {
+  background-color: #F59563;
+  color: white;
+}
+
+.rank-list {
+  flex: 1;
+  width: 100%;
+  background-color: #BBADA0;
+  border-radius: 8rpx;
+  padding: 10rpx;
+  margin-bottom: 20rpx;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  padding: 15rpx 10rpx;
+  margin-bottom: 10rpx;
+  background-color: #EEE4DA;
+  border-radius: 6rpx;
+}
+
+.rank-number {
+  width: 60rpx;
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #776E65;
+}
+
+.avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  margin: 0 20rpx;
+  background-color: #CDC1B4;
+}
+
+.player-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.nickname {
+  font-size: 28rpx;
+  color: #776E65;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 24rpx;
+  color: #BBADA0;
+}
+
+.score {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #F59563;
+  margin-right: 10rpx;
+}
+
+.empty-tip {
+  text-align: center;
+  padding: 40rpx;
+  color: #776E65;
+  font-size: 28rpx;
+}
+
+.my-rank {
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+.back-button {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20rpx 0;
+  text-align: center;
+  background-color: #F59563;
+  color: white;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+}

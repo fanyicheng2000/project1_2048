@@ -1,0 +1,40 @@
+<!--pages/rank/rank.wxml-->
+<view class="container" style="background-color: #FAF8EF;">
+  <view class="rank-header">
+    <view class="title">排行榜</view>
+    <view class="tab-container">
+      <view class="tab {{currentTab === 'friend' ? 'active' : ''}}" bindtap="switchTab" data-tab="friend">好友排行</view>
+      <view class="tab {{currentTab === 'global' ? 'active' : ''}}" bindtap="switchTab" data-tab="global">全球排行</view>
+    </view>
+  </view>
+  
+  <scroll-view scroll-y class="rank-list">
+    <view class="rank-item" wx:for="{{rankList}}" wx:key="index">
+      <view class="rank-number">{{index + 1}}</view>
+      <image class="avatar" src="{{item.avatar || '/assets/default_avatar.png'}}"></image>
+      <view class="player-info">
+        <view class="nickname">{{item.nickname || '玩家'}}</view>
+        <view class="date">{{item.dateFormatted}}</view>
+      </view>
+      <view class="score">{{item.score}}</view>
+    </view>
+    
+    <view class="empty-tip" wx:if="{{rankList.length === 0}}">
+      暂无排行数据
+    </view>
+  </scroll-view>
+  
+  <view class="my-rank">
+    <view class="rank-item">
+      <view class="rank-number">{{myRank}}</view>
+      <image class="avatar" src="{{myInfo.avatar || '/assets/default_avatar.png'}}"></image>
+      <view class="player-info">
+        <view class="nickname">{{myInfo.nickname || '我'}}</view>
+        <view class="date">{{myInfo.dateFormatted}}</view>
+      </view>
+      <view class="score">{{myInfo.score}}</view>
+    </view>
+  </view>
+  
+  <view class="back-button" bindtap="goBack">返回游戏</view>
+</view>

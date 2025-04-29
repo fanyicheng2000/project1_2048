@@ -1,0 +1,77 @@
+/**gameover.wxss**/
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.gameover-box {
+  width: 80%;
+  background-color: #BBADA0;
+  border-radius: 10rpx;
+  padding: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+}
+
+.result-title {
+  font-size: 60rpx;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 40rpx;
+  text-align: center;
+}
+
+.score-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40rpx;
+}
+
+.final-score, .highest-tile {
+  background-color: #EEE4DA;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  text-align: center;
+  min-width: 200rpx;
+}
+
+.score-label {
+  font-size: 28rpx;
+  color: #776E65;
+  margin-bottom: 10rpx;
+}
+
+.score-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #776E65;
+}
+
+.button-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-button {
+  width: 80%;
+  padding: 20rpx 0;
+  margin: 10rpx 0;
+  text-align: center;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+  background-color: #CDC1B4;
+  color: #776E65;
+}
+
+.primary-button {
+  background-color: #F59563;
+  color: white;
+}

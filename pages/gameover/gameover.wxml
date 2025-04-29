@@ -1,0 +1,24 @@
+<!--pages/gameover/gameover.wxml-->
+<view class="container" style="background-color: #FAF8EF;">
+  <view class="gameover-box">
+    <view class="result-title">{{isWin ? '恭喜获胜' : '游戏结束'}}</view>
+    
+    <view class="score-info">
+      <view class="final-score">
+        <view class="score-label">最终得分</view>
+        <view class="score-value">{{score}}</view>
+      </view>
+      
+      <view class="highest-tile">
+        <view class="score-label">最高方块</view>
+        <view class="score-value">{{highestTile}}</view>
+      </view>
+    </view>
+    
+    <view class="button-group">
+      <view class="action-button primary-button" bindtap="playAgain">再玩一次</view>
+      <view class="action-button" bindtap="shareScore">分享成绩</view>
+      <view class="action-button" bindtap="viewRank">查看排行</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "navigation-bar": "/components/navigation-bar/navigation-bar"
+  },
+  "navigationBarTitleText": "游戏规则",
+  "navigationStyle": "custom",
+  "backgroundColor": "#FAF8EF"
+}

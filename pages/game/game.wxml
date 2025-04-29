@@ -1,0 +1,67 @@
+<!--pages/game/game.wxml-->
+<view class="container" style="background-color: #FAF8EF;" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
+  <!-- 顶部区域 -->
+  <view class="header">
+    <view class="title">2048</view>
+    <view class="score-container">
+      <view class="score-box">
+        <view class="score-label">分数</view>
+        <view class="score-value">{{score}}</view>
+      </view>
+      <view class="score-box">
+        <view class="score-label">最高分</view>
+        <view class="score-value">{{bestScore}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 操作按钮 -->
+  <view class="button-container">
+    <view class="game-button" bindtap="restartGame">重新开始</view>
+    <view class="game-button" bindtap="undoMove" wx:if="{{canUndo}}">撤销</view>
+    <view class="game-button" bindtap="toggleSoundSetting">{{soundEnabled ? '关闭音效' : '开启音效'}}</view>
+  </view>
+  
+  <!-- 难度选择器 -->
+  <view class="difficulty-container">
+    <view class="difficulty-label">难度：</view>
+    <view class="difficulty-options">
+      <view 
+        class="difficulty-option {{difficulty === 'easy' ? 'active' : ''}}" 
+        bindtap="changeDifficulty" 
+        data-difficulty="easy">简单</view>
+      <view 
+        class="difficulty-option {{difficulty === 'medium' ? 'active' : ''}}" 
+        bindtap="changeDifficulty" 
+        data-difficulty="medium">中等</view>
+      <view 
+        class="difficulty-option {{difficulty === 'hard' ? 'active' : ''}}" 
+        bindtap="changeDifficulty" 
+        data-difficulty="hard">困难</view>
+    </view>
+  </view>
+  
+  <!-- 游戏棋盘 -->
+  <view class="game-board">
+    <!-- 棋盘背景格子 -->
+    <view class="grid-container">
+      <view class="grid-row" wx:for="{{4}}" wx:for-index="rowIndex" wx:key="rowIndex">
+        <view class="grid-cell" wx:for="{{4}}" wx:for-index="colIndex" wx:key="colIndex"></view>
+      </view>
+    </view>
+    
+    <!-- 数字方块 -->
+    <view class="tile-container">
+      <view wx:for="{{tiles}}" wx:key="id" class="tile tile-{{item.value}} {{item.isNew ? 'tile-new' : ''}} {{item.isMerged ? 'tile-merged' : ''}}" style="top: {{item.row * 122}}rpx; left: {{item.col * 122}}rpx;">
+        <view class="tile-inner">{{item.value}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部按钮区域 -->
+  <view class="footer">
+    <view class="footer-button" bindtap="showRules">游戏规则</view>
+    <view class="footer-button" bindtap="showRank">排行榜</view>
+    <view class="footer-button" bindtap="shareGame">分享</view>
+  </view>
+</view>
