@@ -188,7 +188,11 @@
 /* 数字方块颜色 */
 .tile-2 {
   background-color: #EEE4DA;
-  color: #776E65;
+  background-image: url('../../assets/pictures/cat2.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent;
 }
 
 .tile-4 {
