@@ -51,7 +51,7 @@
 /* 操作按钮 */
 .button-container {
   display: flex;
-  margin-bottom: 10rpx;
+  margin-bottom: 5rpx;
 }
 
 .game-button {
@@ -67,7 +67,7 @@
 .difficulty-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
   width: 100%;
   justify-content: center;
 }
@@ -105,7 +105,7 @@
   height: 488rpx;
   background-color: #BBADA0;
   border-radius: 10rpx;
-  margin: 20rpx 0;
+  margin: 10rpx 0;
   padding: 10rpx;
 }
 
