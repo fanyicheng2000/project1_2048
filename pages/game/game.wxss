@@ -6,6 +6,7 @@
   align-items: center;
   padding: 20rpx;
   box-sizing: border-box;
+  background: linear-gradient(135deg, #E6E6FA, #B0E2FF);
 }
 
 /* 顶部区域 */

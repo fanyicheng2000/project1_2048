@@ -1,5 +1,5 @@
 <!--pages/game/game.wxml-->
-<view class="container" style="background-color: #FAF8EF;" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
+<view class="container" bindtouchstart="onTouchStart" bindtouchend="onTouchEnd">
   <!-- 顶部区域 -->
   <view class="header">
     <view class="title">2048</view>
