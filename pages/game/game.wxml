@@ -57,6 +57,33 @@
           <block wx:if="{{item.value === 2}}">
             <image class="tile-image" src="../../assets/pictures/cat2.png" mode="aspectFit"></image>
           </block>
+          <block wx:elif="{{item.value === 4}}">
+            <image class="tile-image" src="../../assets/pictures/cat4.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 8}}">
+            <image class="tile-image" src="../../assets/pictures/cat8.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 16}}">
+            <image class="tile-image" src="../../assets/pictures/cat16.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 32}}">
+            <image class="tile-image" src="../../assets/pictures/cat32.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 64}}">
+            <image class="tile-image" src="../../assets/pictures/cat64.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 128}}">
+            <image class="tile-image" src="../../assets/pictures/cat128.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 256}}">
+            <image class="tile-image" src="../../assets/pictures/cat256.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 512}}">
+            <image class="tile-image" src="../../assets/pictures/cat512.png" mode="aspectFit"></image>
+          </block>
+          <block wx:elif="{{item.value === 1024}}">
+            <image class="tile-image" src="../../assets/pictures/cat1024.png" mode="aspectFit"></image>
+          </block>
           <block wx:else>
             {{item.value}}
           </block>
