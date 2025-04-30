@@ -46,7 +46,9 @@
     <!-- 棋盘背景格子 -->
     <view class="grid-container">
       <view class="grid-row" wx:for="{{4}}" wx:for-index="rowIndex" wx:key="rowIndex">
-        <view class="grid-cell" wx:for="{{4}}" wx:for-index="colIndex" wx:key="colIndex"></view>
+        <view class="grid-cell" wx:for="{{4}}" wx:for-index="colIndex" wx:key="colIndex">
+          <image class="empty-cell-image" src="/assets/pictures/cat_laugh.png" mode="aspectFit"></image>
+        </view>
       </view>
     </view>
     

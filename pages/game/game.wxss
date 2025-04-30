@@ -125,6 +125,14 @@
   background-color: #CDC1B4;
   border-radius: 6rpx;
   margin: 8rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-cell-image {
+  width: 80%;
+  height: 80%;
 }
 
 .tile-container {
