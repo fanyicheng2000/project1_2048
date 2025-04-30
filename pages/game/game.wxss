@@ -183,16 +183,26 @@
 
 .tile-inner {
   text-align: center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tile-image {
+  width: 90%;
+  height: 90%;
 }
 
 /* 数字方块颜色 */
 .tile-2 {
   background-color: #EEE4DA;
-  background-image: url('../../assets/pictures/cat2.png');
+  background-image: url('/assets/pictures/cat2.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  color: transparent;
+  color: transparent; 
 }
 
 .tile-4 {

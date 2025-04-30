@@ -719,7 +719,8 @@ Page({
 
       // 设置音效文件路径
       const soundBasePath = 'assets/sounds/';
-      this.mergeSound.src = soundBasePath + 'merge.wav';
+      //this.mergeSound.src = soundBasePath + 'merge.wav';
+      this.mergeSound.src = soundBasePath + 'meow.wav';
       this.moveSound.src = soundBasePath + 'move.wav';
       this.winSound.src = soundBasePath + 'win.mp3';
       this.gameoverSound.src = soundBasePath + 'gameover.wav';

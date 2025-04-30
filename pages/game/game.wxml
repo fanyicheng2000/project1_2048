@@ -53,7 +53,14 @@
     <!-- 数字方块 -->
     <view class="tile-container">
       <view wx:for="{{tiles}}" wx:key="id" class="tile tile-{{item.value}} {{item.isNew ? 'tile-new' : ''}} {{item.isMerged ? 'tile-merged' : ''}}" style="top: {{item.row * 122}}rpx; left: {{item.col * 122}}rpx;">
-        <view class="tile-inner">{{item.value}}</view>
+        <view class="tile-inner">
+          <block wx:if="{{item.value === 2}}">
+            <image class="tile-image" src="../../assets/pictures/cat2.png" mode="aspectFit"></image>
+          </block>
+          <block wx:else>
+            {{item.value}}
+          </block>
+        </view>
       </view>
     </view>
   </view>
